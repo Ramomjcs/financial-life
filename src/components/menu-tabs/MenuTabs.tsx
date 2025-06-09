@@ -2,7 +2,9 @@ import * as React from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
-import Expenses from "../Tabs/Expenses";
+import Expenses from "../tabs/Expenses";
+import Incomes from "../tabs/Incomes";
+import FixedMonthly from "../tabs/FixedMonthly";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -19,7 +21,7 @@ function CustomTabPanel(props: TabPanelProps) {
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
-      className="h-full py-4 "
+      className="flex-grow min-h-0 overflow-hidden"
       {...other}
     >
       {value === index && (
@@ -57,24 +59,27 @@ export default function MenuTabs() {
           allowScrollButtonsMobile
         >
           <Tab label="Despesas" {...a11yProps(0)} />
-          {/* <Tab label="Renda" {...a11yProps(1)} />
-          <Tab label="Resumo" {...a11yProps(2)} />
-          <Tab label="Mercado" {...a11yProps(2)} />
-          <Tab label="Parcelados" {...a11yProps(2)} /> */}
+          <Tab label="Receitas" {...a11yProps(1)} />
+          <Tab label="Fixo Mensal" {...a11yProps(2)} />
+          <Tab label="Resumo" {...a11yProps(3)} />
+          <Tab label="Parcelados" {...a11yProps(4)} />
         </Tabs>
       </Box>
-      <div className="h-[90vh] overflow-y-auto">
+      <div className="flex-grow min-h-0 flex flex-col overflow-auto">
         <CustomTabPanel value={value} index={0}>
           <Expenses />
         </CustomTabPanel>
         <CustomTabPanel value={value} index={1}>
-          Renda
+          <Incomes />
         </CustomTabPanel>
         <CustomTabPanel value={value} index={2}>
-          Resumo
+          <FixedMonthly />
         </CustomTabPanel>
         <CustomTabPanel value={value} index={3}>
-          Compras
+          Resumo
+        </CustomTabPanel>
+        <CustomTabPanel value={value} index={4}>
+          Parcelados
         </CustomTabPanel>
       </div>
     </Box>

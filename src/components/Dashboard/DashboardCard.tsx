@@ -4,7 +4,7 @@ import { useState, ReactNode, CSSProperties } from 'react';
 import { IconButton } from '@mui/material';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import clsx from 'clsx';
-import Card from '../UI/Card/Card';
+import Card from '../ui/Card/Card';
 
 interface DashboardCardProps {
   icon: ReactNode;

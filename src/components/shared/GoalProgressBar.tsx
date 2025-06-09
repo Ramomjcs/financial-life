@@ -5,6 +5,7 @@ import clsx from "clsx";
 
 interface GoalProgressBarProps {
   title: string;
+  description?: string;
   percentage: number;
   barColor?: string;
   backgroundColor?: string;
@@ -13,6 +14,7 @@ interface GoalProgressBarProps {
 
 export default function GoalProgressBar({
   title,
+  description,
   percentage,
   barColor = "bg-blue-500",
   backgroundColor = "bg-gray-200",
@@ -22,7 +24,8 @@ export default function GoalProgressBar({
 
   return (
     <div className="w-full">
-      <p className="mb-1 text-sm font-medium text-gray-700">{title}</p>
+      <b>{title}</b>
+      <p className="mb-1 text-gray-700">{description}</p>
 
       <div className={clsx("w-full h-5 rounded-full", backgroundColor)}>
         <div

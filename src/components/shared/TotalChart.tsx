@@ -15,17 +15,17 @@ import dayjs from "dayjs";
 
 type ViewMode = "mensal" | "quinzenal" | "6-meses" | "anual";
 
-interface ExpenseData {
+interface ItemData {
   label: string;
   value: number;
 }
 
-interface TotalExpenseChartProps {
+interface TotalChartProps {
   barColor?: string;
 }
 
-function generateMockData(mode: ViewMode): ExpenseData[] {
-  const data: ExpenseData[] = [];
+function generateMockData(mode: ViewMode): ItemData[] {
+  const data: ItemData[] = [];
 
   if (mode === "anual") {
     for (let i = 11; i >= 0; i--) {
@@ -72,7 +72,7 @@ function generateMockData(mode: ViewMode): ExpenseData[] {
   return data;
 }
 
-export function TotalExpenseChart({ barColor = "#4f46e5" }: TotalExpenseChartProps) {
+export function TotalChart({ barColor = "#4f46e5" }: TotalChartProps) {
   const [viewMode, setViewMode] = useState<ViewMode>("mensal");
   const data = generateMockData(viewMode);
 
@@ -80,7 +80,7 @@ export function TotalExpenseChart({ barColor = "#4f46e5" }: TotalExpenseChartPro
     <div className="w-full mx-auto bg-white p-2">
       <div className="flex justify-between items-center mb-4">
         <h3 className="text-lg font-semibold text-gray-800">
-          Total de Despesas
+          Despesa Total
         </h3>
 
         <FormControl size="small">

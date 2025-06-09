@@ -14,7 +14,7 @@ const dataRaw = [
   { name: "Roupas", value: 250, color: "#FF8042" },
 ];
 
-export function MonthlyExpenseSummary() {
+export function MonthlySummary() {
   const total = dataRaw.reduce((sum, item) => sum + item.value, 0);
 
   const chartData = {
@@ -52,9 +52,9 @@ export function MonthlyExpenseSummary() {
   };
 
   return (
-    <div className="flex flex-col md:flex-row items-center justify-between gap-9 bg-white w-full p-2 rounded-lg">
+    <div className="flex flex-col md:flex-row items-center justify-between gap-3 bg-white w-full p-2 rounded-lg">
       <div className="flex">
-        <div className="relative w-[250px] h-[250px]">
+        <div className="relative w-[200px] h-[200px]">
           <Doughnut data={chartData} options={options} />
 
           <div className="absolute inset-0 flex flex-col items-center justify-center z-0 pointer-events-none">
@@ -78,11 +78,11 @@ export function MonthlyExpenseSummary() {
         </div>
       </div>
 
-      <div className="flex flex-1 flex-col gap-4 px-4">
-        <div className="flex flex-col gap-1">
-          <b>Metas</b>
+      <div className="flex flex-1 flex-col gap-1 md:px-4 w-full">
+        <div className="flex flex-col gap-5 w-full">
           <GoalProgressBar
-            title="Meta de Economia - R$2.800,00 de R$3.000,00"
+            title="Meta de Economia"
+            description="R$2.800,00 de R$3.000,00"
             percentage={84}
             barColor="bg-emerald-500"
             backgroundColor="bg-emerald-100"
@@ -90,17 +90,13 @@ export function MonthlyExpenseSummary() {
           />
 
           <GoalProgressBar
-            title="Limite de Gastos - R$750,00 de R$1.500,00"
+            title="Limite de Gastos"
+            description="R$750,00 de R$1.500,00"
             percentage={52}
             barColor="bg-orange-400"
             backgroundColor="bg-emerald-100"
             showPercentageInside={true}
           />
-        </div>
-
-        <div className="flex flex-col gap-1 text-gray-700 mt-4">
-          <b>Gastos / Renda (%)</b>
-          <span className="text-sm font-medium">Gasto Total: R$ 6.200,00 (72% da Renda)</span>
         </div>
       </div>
     </div>

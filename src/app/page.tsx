@@ -1,9 +1,9 @@
 "use client";
 
-import Card from "@/components/UI/Card/Card";
+import Card from "@/components/ui/Card/Card";
 import { useState } from "react";
-import MenuTabs from "@/components/MenuTabs/MenuTabs";
-import DashboardCard from "@/components/Dashboard/DashboardCard";
+import MenuTabs from "@/components/menu-tabs/MenuTabs";
+import DashboardCard from "@/components/dashboard/DashboardCard";
 import { AccountBalanceWallet } from "@mui/icons-material";
 
 export default function Home() {
@@ -15,8 +15,8 @@ export default function Home() {
   ]);
 
   return (
-    <div className="p-4 bg-[#fafafa] w-full h-screen flex flex-col overflow-hidden">
-      <div className="md:grid hidden md:grid-cols-4 grid-cols-1 gap-4 mb-2">
+    <div className=" bg-[#fafafa] h-screen w-screen flex flex-col overflow-hidden">
+      <div className="md:grid hidden md:grid-cols-4 grid-cols-1 gap-4 px-4 pt-4">
         {cards.map((card, index) => (
           <DashboardCard
             icon={<AccountBalanceWallet />}
@@ -28,7 +28,7 @@ export default function Home() {
         ))}
       </div>
 
-      <div className="flex-1">
+      <div className="overflow-y-auto flex-grow min-h-0 px-4 pb-4">
         <MenuTabs />
       </div>
     </div>

@@ -4,38 +4,38 @@ import Card from "../ui/Card/Card";
 import { List } from "../shared/List";
 import { MonthlySummary } from "../shared/MonthlySummary";
 import { TotalChart } from "../shared/TotalChart";
-import { CustomExpenseModal } from "../modals/CustomExpenseModal";
+import { CustomIncomeModal } from "../modals/CustomIncomeModal";
 import { Item } from "@/types/shared/item-type";
 
-const Expenses: React.FC = () => {
+const Incomes: React.FC = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [editingItem, setEditingItem] = useState<Item | null>(null);
   const [items, setItems] = useState<Item[]>([
     {
       id: "1",
-      title: "Remédio para dor de cabeça",
-      type: "farmacia",
+      title: "Trabalho freelancer",
+      type: "freelance",
       date: dayjs().subtract(1, "day").toISOString(),
       value: "24,90",
     },
     {
       id: "2",
-      title: "Almoço com amigos",
-      type: "comida",
+      title: "Trabalho B",
+      type: "claro",
       date: dayjs().toISOString(),
       value: "52,00",
     },
     {
       id: "3",
-      title: "Tênis de corrida",
-      type: "esporte",
+      title: "Trabalho C",
+      type: "conversion",
       date: dayjs().subtract(6, "day").toISOString(),
       value: "250,00",
     },
     {
       id: "4",
-      title: "Blusa nova",
-      type: "roupa",
+      title: "Trabalho D",
+      type: "educandus",
       date: dayjs().subtract(15, "day").toISOString(),
       value: "120,00",
     },
@@ -45,9 +45,9 @@ const Expenses: React.FC = () => {
     setItems((prevItems) => {
       const index = prevItems.findIndex((i) => i.id === item.id);
       if (index !== -1) {
-        const updatedItems = [...prevItems];
-        updatedItems[index] = item;
-        return updatedItems;
+        const updated = [...prevItems];
+        updated[index] = item;
+        return updated;
       }
       return [item, ...prevItems];
     });
@@ -55,23 +55,25 @@ const Expenses: React.FC = () => {
     setModalOpen(false);
   };
 
+  const handleDeleteItem = (id: string) => {
+    setItems((prevItems) => prevItems.filter((item) => item.id !== id));
+  };
+
   return (
     <div className="grid md:grid-cols-2 grid-cols-1 gap-4 my-4">
       <Card width="100%">
         <List
-          title="Minhas Despesas"
-          typeName="despesa"
+          title="Minhas Receitas"
+          typeName="receita"
           items={items}
           modalOpen={modalOpen}
           setModalOpen={setModalOpen}
           editingItem={editingItem}
           onEditItem={setEditingItem}
           onAddItem={handleAddOrUpdateItem}
-          onDeleteItem={(id) =>
-            setItems((prev) => prev.filter((item) => item.id !== id))
-          }
+          onDeleteItem={handleDeleteItem}
           renderModal={({ open, onClose, onAdd, editingItem }) => (
-            <CustomExpenseModal
+            <CustomIncomeModal
               open={open}
               onClose={() => {
                 onClose();
@@ -96,4 +98,4 @@ const Expenses: React.FC = () => {
   );
 };
 
-export default Expenses;
+export default Incomes;
