@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import CurrencyInput from "react-currency-input-field";
 import { useState, useEffect } from "react";
-import { Item, TypeExpenses } from "@/types/shared/item-type";
+import { Item, TypeExpenses, TypePaymentWays } from "@/types/shared/item-type";
 import dayjs from "dayjs";
 
 interface Props {
@@ -30,6 +30,7 @@ export function CustomExpenseModal({
 }: Props) {
   const [newTitle, setNewTitle] = useState("");
   const [newType, setNewType] = useState<TypeExpenses>("comida");
+  const [newPaymentWay, setNewPaymentWay] = useState<TypePaymentWays>("pix");
   const [newValue, setNewValue] = useState<string | undefined>();
 
   useEffect(() => {
@@ -58,6 +59,7 @@ export function CustomExpenseModal({
       id: editingItem?.id ?? Date.now().toString(),
       title: newTitle,
       type: newType,
+      paymentWay: newPaymentWay,
       value: newValue,
       date: editingItem?.date ?? dayjs().toISOString(),
     });
@@ -101,6 +103,21 @@ export function CustomExpenseModal({
             <MenuItem value="esporte">Esporte</MenuItem>
             <MenuItem value="roupa">Roupa</MenuItem>
             <MenuItem value="outros">Outros</MenuItem>
+          </Select>
+        </FormControl>
+        <FormControl fullWidth>
+          <InputLabel id="forma-pagamento">Forma de Pagamento</InputLabel>
+          <Select
+            labelId="forma-pagamento"
+            value={newPaymentWay}
+            onChange={(e) => setNewPaymentWay(e.target.value as TypePaymentWays)}
+            label="Forma de Pagamento"
+          >
+            <MenuItem value="pix">PIX</MenuItem>
+            <MenuItem value="cc_nubank_ramom">Cartão Nubank - José</MenuItem>
+            <MenuItem value="cc_nubank_maria">Cartão Nubank - Maria</MenuItem>
+            <MenuItem value="flash_maria">Cartão Flash - Maria</MenuItem>
+            <MenuItem value="flash_josé">Cartão Flash - José</MenuItem>
           </Select>
         </FormControl>
       </DialogContent>
