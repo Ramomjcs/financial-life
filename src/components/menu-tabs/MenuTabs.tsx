@@ -5,6 +5,7 @@ import Box from "@mui/material/Box";
 import Expenses from "../tabs/Expenses";
 import Incomes from "../tabs/Incomes";
 import FixedMonthly from "../tabs/FixedMonthly";
+import Summary from "../tabs/Summary";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -76,7 +77,7 @@ export default function MenuTabs() {
           <FixedMonthly />
         </CustomTabPanel>
         <CustomTabPanel value={value} index={3}>
-          Resumo
+          <Summary />
         </CustomTabPanel>
         <CustomTabPanel value={value} index={4}>
           Parcelados

@@ -89,7 +89,7 @@ const Expenses: React.FC = () => {
           <MonthlySummary />
         </Card>
         <Card width="100%">
-          <TotalChart barColor="#2688FE" />
+          <TotalChart title="Despesa" barColor="#2688FE" />
         </Card>
       </div>
     </div>

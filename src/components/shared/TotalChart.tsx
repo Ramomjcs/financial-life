@@ -22,6 +22,7 @@ interface ItemData {
 
 interface TotalChartProps {
   barColor?: string;
+  title?: string;
 }
 
 function generateMockData(mode: ViewMode): ItemData[] {
@@ -72,7 +73,7 @@ function generateMockData(mode: ViewMode): ItemData[] {
   return data;
 }
 
-export function TotalChart({ barColor = "#4f46e5" }: TotalChartProps) {
+export function TotalChart({ barColor = "#4f46e5", title }: TotalChartProps) {
   const [viewMode, setViewMode] = useState<ViewMode>("mensal");
   const data = generateMockData(viewMode);
 
@@ -80,7 +81,7 @@ export function TotalChart({ barColor = "#4f46e5" }: TotalChartProps) {
     <div className="w-full mx-auto bg-white p-2">
       <div className="flex justify-between items-center mb-4">
         <h3 className="text-lg font-semibold text-gray-800">
-          Despesa Total
+          {title} Total
         </h3>
 
         <FormControl size="small">

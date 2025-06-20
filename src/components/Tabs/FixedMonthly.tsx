@@ -97,26 +97,30 @@ const FixedMonthly: React.FC = () => {
   return (
     <div className="grid grid-cols-1 gap-4 my-4">
       <Card width="100%">
-        <div className="flex flex-col gap-2 m-2 ">
+        <div className="flex flex-col gap-2 m-2">
           <h2 className="text-xl font-bold text-gray-800 mt-1">Fixo Mensal</h2>
-          <div className="grid grid-cols-2 md:grid-cols-5 text-[18px] items-center">
-            <div className="flex flex-col col-span-1">
-              <span className="text-gray-600">Despesa Fixa Mensal: </span>
-              <span className="font-semibold">R$ 3.500,00</span>
+
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-2 text-[18px] items-start">
+            
+            <div className="grid col-span-1 md:col-span-3 md:grid-cols-3 gap-2">
+              <div className="flex flex-col">
+                <span className="text-gray-600">Despesa Fixa Mensal:</span>
+                <span className="font-semibold">R$ 3.500,00</span>
+              </div>
+
+              <div className="flex flex-col">
+                <span className="text-gray-600">Receita Fixa Mensal:</span>
+                <span className="font-semibold">R$ 3.500,00</span>
+              </div>
+
+              <div className="flex flex-col">
+                <span className="text-gray-600">Saldo Mensal:</span>
+                <span className="font-semibold">R$ 3.500,00</span>
+              </div>
             </div>
 
-            <div className="flex flex-col col-span-1">
-              <span className="text-gray-600">Receita Fixa Mensal: </span>
-              <span className="font-semibold">R$ 3.500,00</span>
-            </div>
-
-            <div className="flex flex-col col-span-1">
-              <span className="text-gray-600">Saldo Mensal: </span>
-              <span className="font-semibold">R$ 3.500,00</span>
-            </div>
-
-            <div className="md:col-span-2 flex flex-col">
-              <FormControl size="small" sx={{ width: 120, marginBottom: 1 }}>
+            <div className="md:col-span-2 col-span-1 flex flex-col gap-2 md:mt-[-34px]">
+              <FormControl size="small" sx={{ width: 120 }}>
                 <InputLabel id="type-select-label">Tipo</InputLabel>
                 <Select
                   labelId="type-select-label"
@@ -148,8 +152,59 @@ const FixedMonthly: React.FC = () => {
               </div>
             </div>
           </div>
+
+          {/* <div className="grid grid-cols-2 md:grid-cols-5 gap-2 text-[18px] items-start">
+            <div className="flex flex-col">
+              <span className="text-gray-600">Despesa Fixa Mensal:</span>
+              <span className="font-semibold">R$ 3.500,00</span>
+            </div>
+
+            <div className="flex flex-col">
+              <span className="text-gray-600">Receita Fixa Mensal:</span>
+              <span className="font-semibold">R$ 3.500,00</span>
+            </div>
+
+            <div className="flex flex-col">
+              <span className="text-gray-600">Saldo Mensal:</span>
+              <span className="font-semibold">R$ 3.500,00</span>
+            </div>
+
+            <div className="md:col-span-2 flex flex-col gap-2 md:mt-[-34px]">
+              <FormControl size="small" sx={{ width: 120 }}>
+                <InputLabel id="type-select-label">Tipo</InputLabel>
+                <Select
+                  labelId="type-select-label"
+                  id="type-select"
+                  value={selectedType}
+                  label="Tipo"
+                  onChange={(e) => setSelectedType(e.target.value)}
+                >
+                  <MenuItem value="despesa">Despesa</MenuItem>
+                  <MenuItem value="receita">Receita</MenuItem>
+                </Select>
+              </FormControl>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+                {dataRaw.map((item, index) => (
+                  <div
+                    key={index}
+                    className="flex items-center gap-2 text-[17px]"
+                  >
+                    <div
+                      className="w-3 h-3 rounded-full"
+                      style={{ backgroundColor: item.color }}
+                    ></div>
+                    <span className="text-gray-700">
+                      {item.name} ({item.percentage})
+                    </span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div> */}
         </div>
       </Card>
+
       <div className="grid md:grid-cols-2 grid-cols-1 gap-4">
         {/* Despesas Fixas */}
         <Card width="100%">
