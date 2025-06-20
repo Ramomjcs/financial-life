@@ -31,16 +31,21 @@ export function CustomIncomeModal({
   const [newTitle, setNewTitle] = useState("");
   const [newType, setNewType] = useState<TypeIncomes>("freelance");
   const [newValue, setNewValue] = useState<string | undefined>();
+  const [newDate, setNewDate] = useState<string>(
+    dayjs().format("YYYY-MM-DDTHH:mm")
+  );
 
   useEffect(() => {
     if (editingItem) {
       setNewTitle(editingItem.title);
       setNewType(editingItem.type as TypeIncomes);
       setNewValue(editingItem.value);
+      setNewDate(dayjs(editingItem.date).format("YYYY-MM-DDTHH:mm"));
     } else {
       setNewTitle("");
       setNewType("freelance");
       setNewValue(undefined);
+      setNewDate(dayjs().format("YYYY-MM-DDTHH:mm"));
     }
   }, [editingItem]);
 
@@ -48,6 +53,7 @@ export function CustomIncomeModal({
     setNewTitle("");
     setNewType("freelance");
     setNewValue(undefined);
+    setNewDate(dayjs().format("YYYY-MM-DDTHH:mm"));
     onClose();
   };
 
@@ -59,7 +65,7 @@ export function CustomIncomeModal({
       title: newTitle,
       type: newType,
       value: newValue,
-      date: editingItem?.date ?? dayjs().toISOString(),
+      date: dayjs(newDate).toISOString(),
     });
 
     handleClose();
@@ -103,6 +109,13 @@ export function CustomIncomeModal({
             <MenuItem value="outros">Outros</MenuItem>
           </Select>
         </FormControl>
+        <TextField
+          label="Data"
+          type="datetime-local"
+          value={newDate}
+          onChange={(e) => setNewDate(e.target.value)}
+          fullWidth
+        />
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose}>Cancelar</Button>

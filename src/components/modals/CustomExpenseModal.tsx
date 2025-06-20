@@ -32,23 +32,32 @@ export function CustomExpenseModal({
   const [newType, setNewType] = useState<TypeExpenses>("comida");
   const [newPaymentWay, setNewPaymentWay] = useState<TypePaymentWays>("pix");
   const [newValue, setNewValue] = useState<string | undefined>();
+  const [newDate, setNewDate] = useState<string>(
+    dayjs().format("YYYY-MM-DDTHH:mm")
+  );
 
   useEffect(() => {
     if (editingItem) {
       setNewTitle(editingItem.title);
       setNewType(editingItem.type as TypeExpenses);
+      setNewPaymentWay(editingItem.paymentWay as TypePaymentWays);
       setNewValue(editingItem.value);
+      setNewDate(dayjs(editingItem.date).format("YYYY-MM-DDTHH:mm"));
     } else {
       setNewTitle("");
       setNewType("comida");
+      setNewPaymentWay("pix");
       setNewValue(undefined);
+      setNewDate(dayjs().format("YYYY-MM-DDTHH:mm"));
     }
   }, [editingItem]);
 
   const handleClose = () => {
     setNewTitle("");
     setNewType("comida");
+    setNewPaymentWay("pix");
     setNewValue(undefined);
+    setNewDate(dayjs().format("YYYY-MM-DDTHH:mm"));
     onClose();
   };
 
@@ -61,7 +70,7 @@ export function CustomExpenseModal({
       type: newType,
       paymentWay: newPaymentWay,
       value: newValue,
-      date: editingItem?.date ?? dayjs().toISOString(),
+      date: dayjs(newDate).toISOString(),
     });
 
     handleClose();
@@ -110,7 +119,9 @@ export function CustomExpenseModal({
           <Select
             labelId="forma-pagamento"
             value={newPaymentWay}
-            onChange={(e) => setNewPaymentWay(e.target.value as TypePaymentWays)}
+            onChange={(e) =>
+              setNewPaymentWay(e.target.value as TypePaymentWays)
+            }
             label="Forma de Pagamento"
           >
             <MenuItem value="pix">PIX</MenuItem>
@@ -120,6 +131,13 @@ export function CustomExpenseModal({
             <MenuItem value="flash_josé">Cartão Flash - José</MenuItem>
           </Select>
         </FormControl>
+        <TextField
+          label="Data"
+          type="datetime-local"
+          value={newDate}
+          onChange={(e) => setNewDate(e.target.value)}
+          fullWidth
+        />
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose}>Cancelar</Button>
